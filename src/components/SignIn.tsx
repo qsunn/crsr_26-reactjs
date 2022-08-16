@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { IUser } from "../user.model";
 
 function SignIn() {
   const [email, setEmail] = useState("");
@@ -10,12 +11,32 @@ function SignIn() {
     "bg-neutral-900 border border-neutral-600 rounded-[4px] p-[16px] text-sm w-full placeholder:text-neutral-400";
   const textBtnClass = "block text-sm text-blue-200";
 
+  const reset = () => {
+    setEmail('');
+    setPassword('');
+    setSave(false);
+  }
+
   const submitHandler = (event: React.FormEvent) => {
     event.preventDefault();
-    console.log(event);
-    const user = {
-        
+    const user: IUser = {
+      firstName: '',
+      lastName: '',
+      email: email,
+      password: password,
+      promo: false,
+      save: false
     };
+    console.log(user);
+    reset();
+  };
+
+  const emailHandler = (event: any) => {
+    setEmail(event.target.value);
+  };
+
+  const passwordHandler = (event: any) => {
+    setPassword(event.target.value);
   };
 
   const checkboxHandler = () => {
@@ -39,11 +60,15 @@ function SignIn() {
           type="email"
           className={inputClass}
           placeholder="Email Address *"
+          onChange={(event) => emailHandler(event)}
+          value={email}
         />
         <input
           type="password"
           className={inputClass}
           placeholder="Password *"
+          onChange={(event) => passwordHandler(event)}
+          value={password}
         />
         <div className="justify-self-start mb-[16px] text-sm flex items-center">
           <input
@@ -57,8 +82,7 @@ function SignIn() {
             htmlFor="save"
             className="ml-[10px] text-sm text-neutral-400 dark:text-gray-300"
           >
-            I want to receive inspiration, marketing
-            <br /> promotions and updates via email.
+            Remember me
           </label>
         </div>
         <button

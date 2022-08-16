@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { IUser } from "../user.model";
 
 function SignUp() {
   const [firstName, setFirstName] = useState("");
@@ -12,10 +13,42 @@ function SignUp() {
     "bg-neutral-900 border border-neutral-600 rounded-[4px] p-[16px] text-sm w-full placeholder:text-neutral-400";
   const textBtnClass = "block text-sm text-blue-200";
 
+  const reset = () => {
+    setFirstName('');
+    setLastName('');
+    setEmail('');
+    setPassword('');
+    setPromo(false);
+  }
+
   const submitHandler = (event: React.FormEvent) => {
     event.preventDefault();
-    console.log(event);
-    const user = {};
+    const user: IUser = {
+      firstName: firstName,
+      lastName: lastName,
+      email: email,
+      password: password,
+      promo: promo,
+      save: false
+    };
+    console.log(user);
+    reset();
+  };
+
+  const firstNameHandler = (event: any) => {
+    setFirstName(event.target.value);
+  };
+
+  const lastNameHandler = (event: any) => {
+    setLastName(event.target.value);
+  };
+
+  const emailHandler = (event: any) => {
+    setEmail(event.target.value);
+  };
+
+  const passwordHandler = (event: any) => {
+    setPassword(event.target.value);
   };
 
   const checkboxHandler = () => {
@@ -44,18 +77,30 @@ function SignUp() {
             type="text"
             className={inputClass}
             placeholder="First Name *"
+            onChange={(event) => firstNameHandler(event)}
+            value={firstName}
           />
-          <input type="text" className={inputClass} placeholder="Last Name *" />
+          <input
+            type="text"
+            className={inputClass}
+            placeholder="Last Name *"
+            onChange={(event) => lastNameHandler(event)}
+            value={lastName}
+          />
         </div>
         <input
           type="email"
           className={inputClass}
           placeholder="Email Address *"
+          onChange={(event) => emailHandler(event)}
+          value={email}
         />
         <input
           type="password"
           className={inputClass}
           placeholder="Password *"
+          onChange={(event) => passwordHandler(event)}
+          value={password}
         />
         <div className="justify-self-start mb-[16px] text-sm flex items-center">
           <input
