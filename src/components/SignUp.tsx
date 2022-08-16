@@ -1,17 +1,26 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 function SignUp() {
-    const [firstName, setFirstName] = useState("");
-    const [lastName, setLastName] = useState("");
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-    const [promo, setPromo] = useState(false);
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [promo, setPromo] = useState(false);
 
-    
   const inputClass =
     "bg-neutral-900 border border-neutral-600 rounded-[4px] p-[16px] text-sm w-full placeholder:text-neutral-400";
   const textBtnClass = "block text-sm text-blue-200";
+
+  const submitHandler = (event: React.FormEvent) => {
+    event.preventDefault();
+    console.log(event);
+    const user = {};
+  };
+
+  const checkboxHandler = () => {
+    setPromo((prev) => !prev);
+  };
 
   return (
     <div className="grid auto-rows-min place-items-center gap-[16px] text-white border border-neutral-600 rounded-[8px] p-[48px]">
@@ -25,7 +34,11 @@ function SignUp() {
         </div>
         <h1 className="text-xl">Sign Up</h1>
       </div>
-      <form className="grid auto-rows-min place-items-center gap-[16px] w-full">
+      <form
+        className="grid auto-rows-min place-items-center gap-[16px] w-full"
+        id="form"
+        onSubmit={(event) => submitHandler(event)}
+      >
         <div className="grid grid-cols-2 gap-[16px]">
           <input
             type="text"
@@ -46,12 +59,16 @@ function SignUp() {
         />
         <div className="justify-self-start mb-[16px] text-sm flex items-center">
           <input
-            type="checkbox"
-            name="promo"
             id="promo"
-            className="default:bg-neutral-900"
+            type="checkbox"
+            checked={promo}
+            onChange={checkboxHandler}
+            className="w-[16px] h-[16px]"
           />
-          <label htmlFor="promo" className="ml-[10px]">
+          <label
+            htmlFor="promo"
+            className="ml-[10px] text-sm text-neutral-400 dark:text-gray-300"
+          >
             I want to receive inspiration, marketing
             <br /> promotions and updates via email.
           </label>
@@ -60,7 +77,7 @@ function SignUp() {
           type="submit"
           className="w-full bg-blue-300 text-black font-bold text-xs uppercase py-[8px] rounded-[4px]"
         >
-          Sign In
+          Sign Up
         </button>
       </form>
       <button type="button" className={`${textBtnClass} justify-self-end`}>
