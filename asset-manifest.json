@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/crsr_26-reactjs/static/css/main.0b820027.css",
-    "main.js": "/crsr_26-reactjs/static/js/main.092eab9d.js",
+    "main.js": "/crsr_26-reactjs/static/js/main.e405bec3.js",
     "index.html": "/crsr_26-reactjs/index.html",
     "main.0b820027.css.map": "/crsr_26-reactjs/static/css/main.0b820027.css.map",
-    "main.092eab9d.js.map": "/crsr_26-reactjs/static/js/main.092eab9d.js.map"
+    "main.e405bec3.js.map": "/crsr_26-reactjs/static/js/main.e405bec3.js.map"
   },
   "entrypoints": [
     "static/css/main.0b820027.css",
-    "static/js/main.092eab9d.js"
+    "static/js/main.e405bec3.js"
   ]
 }
